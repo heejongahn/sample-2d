@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LogicScript : MonoBehaviour
 {
-    public int playerScore;
+    public int playerScore = 0;
     public int health = 3;
     public AudioSource scoreAudioSource;
     public AudioSource collideAudioSource;
     public AudioSource gameOverAudioSource;
 
 
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
     public GameObject gameOverScreen;
 
 
     void updateText()
     {
-        scoreText.text = playerScore.ToString() + " (남은 기회 : " + health + ")";
+        scoreText.text = $"Score : {playerScore} (Life: {health})";
     }
 
     [ContextMenu("Increase Score")]
