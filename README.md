@@ -1,9 +1,9 @@
 # cat-ching cat!
 
-<video src='/cat-ching_cat.mov' />
+![preview](./preview.gif)
 
 my first unity practice project!
 
-basically followed [GMTK tutorial][gmtk tutorial], but with some personal twitst.
+basically followed [GMTK tutorial][gmtk tutorial], but with some personal twists.
 
-[gmkt tutorial]: https://www.youtube.com/watch?v=XtQMytORBmM&t=146s
+[gmtk tutorial]: https://www.youtube.com/watch?v=XtQMytORBmM
