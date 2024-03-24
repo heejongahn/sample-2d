@@ -7,8 +7,12 @@ public class CatsScript : MonoBehaviour
     public Rigidbody2D myRigidBody;
     public float acc = 10;
     public float restorationPower = 1;
+    public LogicScript logicScript;
 
     private bool isColliding = false;
+    private bool isGameOver = false;
+    private float invincibleTime = 1;
+    private float timeSinceLastCollision = 0;
 
 
     // Start is called before the first frame update
@@ -21,6 +25,13 @@ public class CatsScript : MonoBehaviour
     void Update()
     {
         myRigidBody.rotation = 0;
+
+        if (isGameOver)
+        {
+            return;
+        }
+
+        timeSinceLastCollision = timeSinceLastCollision += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -42,9 +53,15 @@ public class CatsScript : MonoBehaviour
 
     void OnCollisionEnter2D()
     {
-
         isColliding = true;
 
+        if (timeSinceLastCollision < invincibleTime)
+        {
+            return;
+        }
+
+        timeSinceLastCollision = 0;
+        isGameOver = logicScript.collide();
     }
 
     void OnCollisionExit2D()
