@@ -25,6 +25,11 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Increase Score")]
     public void addScore(int scoreToAdd)
     {
+        if (health == 0)
+        {
+            return;
+        }
+
         playerScore += scoreToAdd;
         scoreAudioSource.Play();
         updateText();
