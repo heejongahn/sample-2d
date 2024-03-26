@@ -14,11 +14,26 @@ public class CatsScript : MonoBehaviour
     private float invincibleTime = 1;
     private float timeSinceLastCollision = 0;
 
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        float distance = 10;
 
+        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
+        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, distance));
+
+        minX = bottomLeft.x;
+        maxX = topRight.x;
+        minY = bottomLeft.y;
+        maxY = topRight.y;
+
+        Debug.Log($"minX: {minX}, maxX: {maxX}, minY: {minY}, maxY: {maxY}");
     }
 
     // Update is called once per frame
@@ -39,15 +54,26 @@ public class CatsScript : MonoBehaviour
         }
 
         float restorationVelocity = myRigidBody.position.x * -1 * restorationPower;
+        float velocityY = myRigidBody.velocity.y;
 
 
         if (!isColliding && myRigidBody.position.x != 0)
         {
-            myRigidBody.velocity = new Vector2(restorationVelocity, myRigidBody.velocity.y);
+            myRigidBody.velocity = new Vector2(restorationVelocity, velocityY);
         }
         else
         {
-            myRigidBody.velocity = new Vector2(0, myRigidBody.velocity.y);
+            myRigidBody.velocity = new Vector2(0, velocityY);
+        }
+
+        if (myRigidBody.position.y > maxY)
+        {
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, Mathf.Min(velocityY, 0));
+        }
+
+        if (myRigidBody.position.y < minY)
+        {
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, Mathf.Max(velocityY, 0));
         }
     }
 
