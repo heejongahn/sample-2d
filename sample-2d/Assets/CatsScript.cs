@@ -40,6 +40,7 @@ public class CatsScript : MonoBehaviour
     void Update()
     {
         myRigidBody.rotation = 0;
+        myRigidBody.gravityScale = Time.timeScale;
 
         if (isGameOver)
         {
