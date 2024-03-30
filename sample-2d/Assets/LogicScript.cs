@@ -10,6 +10,8 @@ public class LogicScript : MonoBehaviour
 {
     public int playerScore = 0;
     public int health = 3;
+    public float pitchModifier = 1;
+
     public AudioSource scoreAudioSource;
     public AudioSource collideAudioSource;
     public AudioSource gameOverAudioSource;
@@ -83,6 +85,12 @@ public class LogicScript : MonoBehaviour
             timeScale += Time.deltaTime / 50;
             Time.timeScale = timeScale;
         }
+
+        pitchModifier = (1 + (timeScale - 1) / 2) + 0.57F;
+
+        scoreAudioSource.pitch = pitchModifier;
+        collideAudioSource.pitch = pitchModifier;
+
 
         var logics = new List<(KeyCode, Action)>{
             (

@@ -896,7 +896,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 38c01543d1de8479f8628131628524a4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.57
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1631,6 +1631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: 0
   health: 3
+  pitchForSFX: 1.57
   scoreAudioSource: {fileID: 554034916}
   collideAudioSource: {fileID: 1917111965}
   gameOverAudioSource: {fileID: 533665227}
@@ -2049,7 +2050,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: cda1d1c78c1a847848c23059adbab127, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1.57
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
