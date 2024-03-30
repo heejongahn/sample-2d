@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class LogicScript : MonoBehaviour
 {
@@ -56,5 +57,37 @@ public class LogicScript : MonoBehaviour
         }
 
         return isGameOver;
+    }
+
+    public void toggleGamePaused()
+    {
+        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+    }
+
+    void Update()
+    {
+        var logics = new List<(KeyCode, Action)>{
+            (
+                KeyCode.R,
+                () => {
+                    restartGame();
+                }
+            ),
+            (
+                KeyCode.Escape,
+                () => {
+                    toggleGamePaused();
+                }
+            )
+        };
+
+        foreach (var logic in logics)
+        {
+            (var keyCode, var func) = logic;
+            if (Input.GetKeyDown(keyCode))
+            {
+                func();
+            }
+        }
     }
 }
