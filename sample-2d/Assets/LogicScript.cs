@@ -8,6 +8,7 @@ using System;
 
 public class LogicScript : MonoBehaviour
 {
+    public bool isGameOver = false;
     public int playerScore = 0;
     public int health = 3;
     public AudioSource scoreAudioSource;
@@ -46,7 +47,7 @@ public class LogicScript : MonoBehaviour
     public bool collide()
     {
         health = health - 1;
-        bool isGameOver = health == 0;
+        isGameOver = health == 0;
         collideAudioSource.Play();
 
         updateText();
@@ -62,6 +63,11 @@ public class LogicScript : MonoBehaviour
 
     public void toggleGamePaused()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+
         var isPaused = Time.timeScale == 0;
         Time.timeScale = isPaused ? 1 : 0;
         pausedScreen.SetActive(!isPaused);
