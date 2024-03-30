@@ -17,6 +17,7 @@ public class LogicScript : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public GameObject gameOverScreen;
+    public GameObject pausedScreen;
 
 
     void updateText()
@@ -61,7 +62,9 @@ public class LogicScript : MonoBehaviour
 
     public void toggleGamePaused()
     {
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        var isPaused = Time.timeScale == 0;
+        Time.timeScale = isPaused ? 1 : 0;
+        pausedScreen.SetActive(!isPaused);
     }
 
     void Update()
