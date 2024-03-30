@@ -50,10 +50,11 @@ public class CatsScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            myRigidBody.velocity += Vector2.up * acc;
+            myRigidBody.velocity += Vector2.up * acc * Time.timeScale;
         }
 
-        float restorationVelocity = myRigidBody.position.x * -1 * restorationPower;
+        float restorationVelocity = myRigidBody.position.x * -1 * restorationPower * Time.timeScale;
+
         float velocityY = myRigidBody.velocity.y;
 
 

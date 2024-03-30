@@ -8,7 +8,6 @@ using System;
 
 public class LogicScript : MonoBehaviour
 {
-    public bool isGameOver = false;
     public int playerScore = 0;
     public int health = 3;
     public AudioSource scoreAudioSource;
@@ -20,6 +19,10 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject pausedScreen;
 
+
+    private float timeScale = 1;
+    private bool isGameOver = false;
+    private bool isPaused = false;
 
     void updateText()
     {
@@ -68,13 +71,19 @@ public class LogicScript : MonoBehaviour
             return;
         }
 
-        var isPaused = Time.timeScale == 0;
-        Time.timeScale = isPaused ? 1 : 0;
+        Time.timeScale = isPaused ? timeScale : 0;
         pausedScreen.SetActive(!isPaused);
+        isPaused = !isPaused;
     }
 
     void Update()
     {
+        if (!isPaused)
+        {
+            timeScale += Time.deltaTime / 50;
+            Time.timeScale = timeScale;
+        }
+
         var logics = new List<(KeyCode, Action)>{
             (
                 KeyCode.R,
